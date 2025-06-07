@@ -17,22 +17,16 @@ interface TodoCardProps {
 	todo: Todo;
 	isDragging?: boolean;
 }
-export default function TodoCard({ todo, isDragging = false }: TodoCardProps) {
-	const {
-		attributes,
-		listeners,
-		setNodeRef,
-		transform,
-		transition,
-		isDragging: isSortableDragging,
-	} = useSortable({
-		id: todo.id,
-		data: {
-			type: "todo",
-			todo,
-		},
-		disabled: todo.status === "Completed",
-	});
+export default function TodoCard({ todo }: TodoCardProps) {
+	const { attributes, listeners, setNodeRef, transform, transition } =
+		useSortable({
+			id: todo.id,
+			data: {
+				type: "todo",
+				todo,
+			},
+			disabled: todo.status === "Completed",
+		});
 
 	const style = {
 		transform: CSS.Transform.toString(transform),
